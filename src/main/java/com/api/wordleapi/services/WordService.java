@@ -35,7 +35,8 @@ public class WordService {
     } else {
       attemptCount++;
     }
-    return new ResponseEntity<>(WordleDTO.of(word, stringResponse), null, 200);
+    return new ResponseEntity<>(
+        WordleDTO.of(word, stringResponse, attemptCount), null, 200);
   }
 
 
