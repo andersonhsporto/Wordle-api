@@ -38,4 +38,12 @@ public class WordleEntity {
   public int hashCode() {
     return Objects.hash(id, word);
   }
+
+  @Override
+  public String toString() {
+    return "WordleEntity{" +
+        "id=" + id +
+        ", word='" + word + '\'' +
+        '}';
+  }
 }
