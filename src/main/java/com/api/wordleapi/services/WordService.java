@@ -24,21 +24,10 @@ public class WordService {
     var word = wordleDTO.getWord();
     var stringResponse = responseWordle(wordleDTO.getWord());
 
-    if (currentWordCount == 0 || attemptCount == 4) {
-      currentWord = randomWord();
-      currentWordCount = 1;
-      attemptCount = 0;
-    } else if (currentWord.equals(word)) {
-      currentWord = randomWord();
-      currentWordCount++;
-      attemptCount = 0;
-    } else {
-      attemptCount++;
-    }
+    updateWordle(wordleDTO.getWord());
     return new ResponseEntity<>(
         WordleDTO.of(word, stringResponse, attemptCount), null, 200);
   }
-
 
   //C if the character is same as the current word
   //T if the character exists in the current word but in different position
@@ -56,6 +45,20 @@ public class WordService {
       }
     }
     return response.toString();
+  }
+
+  private void updateWordle(String word) {
+    if (currentWordCount == 0 || attemptCount == 4) {
+      currentWord = randomWord();
+      currentWordCount = 1;
+      attemptCount = 0;
+    } else if (currentWord.equals(word)) {
+      currentWord = randomWord();
+      currentWordCount++;
+      attemptCount = 0;
+    } else {
+      attemptCount++;
+    }
   }
 
   private String randomWord() {
