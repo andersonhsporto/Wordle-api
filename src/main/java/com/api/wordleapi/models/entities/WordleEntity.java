@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.apache.commons.csv.CSVRecord;
 
 @Entity
 public class WordleEntity {
@@ -15,11 +16,30 @@ public class WordleEntity {
 
   private String word;
 
+  private Integer count;
+
   public WordleEntity(String word) {
     this.word = word;
+    this.count = 1;
   }
 
   public WordleEntity() {
+  }
+
+  public static WordleEntity fromCsv(CSVRecord csvRecord) {
+    return new WordleEntity(csvRecord.get(0));
+  }
+
+  public String getWord() {
+    return word;
+  }
+
+  public void incrementCount() {
+    this.count++;
+  }
+
+  public void resetCount() {
+    this.count = 1;
   }
 
   @Override
