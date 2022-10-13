@@ -1,7 +1,7 @@
 services:
   app:
-    image: 'Wordle-api-v1:latest'
-    container_name: Wordle-api
+    image: 'wordle-api-v1:latest'
+    container_name: wordle-api
     build:
       context: .
     ports:
